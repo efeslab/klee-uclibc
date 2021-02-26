@@ -152,7 +152,7 @@ extern int __stdio_seek(FILE *stream, register __offmax_t *pos, int whence) attr
 #define __STDIO_STREAM_IS_WRITING(S) ((S)->__modeflags & __FLAG_WRITING)
 
 #define __STDIO_STREAM_SET_READING(S) ((S)->__modeflags |= __FLAG_READING)
-#define __STDIO_STREAM_SET_WRITING(S) ((S)->__modeflags |= __FLAG_WRITING)
+#define __STDIO_STREAM_SET_WRITING(S) if(S) {(S)->__modeflags |= __FLAG_WRITING;}
 
 #define __STDIO_STREAM_IS_READING_OR_READONLY(S) \
 	((S)->__modeflags & (__MASK_READING|__FLAG_READONLY))
@@ -221,7 +221,7 @@ extern int __stdio_seek(FILE *stream, register __offmax_t *pos, int whence) attr
 #define __STDIO_STREAM_CLEAR_READING_AND_UNGOTS(S) \
 	((void)((S)->__modeflags &= ~__MASK_READING))
 #define __STDIO_STREAM_CLEAR_WRITING(S) \
-	((void)((S)->__modeflags &= ~__FLAG_WRITING))
+	if (S) {(void)((S)->__modeflags &= ~__FLAG_WRITING);}
 
 #ifdef __UCLIBC_HAS_STDIO_GETC_MACRO__
 # define __STDIO_STREAM_DISABLE_GETC(S) \

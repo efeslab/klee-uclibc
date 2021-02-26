@@ -22,6 +22,8 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
+#include <stdio.h>
+#include <errno.h>
 
 libc_hidden_proto(ioctl)
 libc_hidden_proto(memset)

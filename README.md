@@ -51,3 +51,8 @@ To build uClibc for KLEE:
 
     To compile in optimized mode use the `--enable-release`
     flag. Warning things might break if you do this.
+
+
+### Notes by Gefei
+1. KLEE_CFLAGS="-DKLEE_SYM_PRINTF" CC=clang-8 make -j`nproc`
+2. tweak __ctype_touplow_t to use int32
